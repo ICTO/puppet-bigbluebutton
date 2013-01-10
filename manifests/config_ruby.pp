@@ -18,9 +18,9 @@ class bigbluebutton::config_ruby {
   }
 
   bigbluebutton::config_ruby::update_alternatives{
-    'ruby1.9.2':
+    'ruby':
       path => '/usr/bin/ruby1.9.2';
-    'gem1.9.2':
+    'gem':
       path => '/usr/bin/gem1.9.2';
   }
 

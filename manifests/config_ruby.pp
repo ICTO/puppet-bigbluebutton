@@ -17,6 +17,11 @@ class bigbluebutton::config_ruby {
     }
   }
 
+  bigbluebutton::config_ruby::update_alternatives{
+    'ri':
+      path => '/usr/bin/ri1.9.2';
+  }
+
   exec {
     'update-alternatives ruby1.9.2':
       command =>  'update-alternatives --set ruby /usr/bin/ruby1.9.2',
@@ -30,5 +35,15 @@ class bigbluebutton::config_ruby {
       command => 'update-alternatives --set gem /usr/bin/gem1.9.2',
       unless  => 'test /etc/alternatives/gem -ef /usr/bin/gem1.9.2',
       require => Package['rubygems1.9.2'];
+  }
+
+}
+
+define bigbluebutton::config_ruby::update_alternatives ($path)
+{
+  exec {
+    "update-alternatives ${name}":
+      command => "update-alternatives --set $name $path",
+      unless  => "test /etc/alternatives/$name -ef $path";
   }
 }

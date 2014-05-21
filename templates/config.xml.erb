@@ -6,7 +6,7 @@
     <porttest host="<%= @fqdn %>" application="video"/>
     <application uri="rtmp://<%= @fqdn %>/bigbluebutton" host="http://<%= @fqdn %>/bigbluebutton/api/enter" />
     <language userSelectionEnabled="true" />
-    <skinning enabled="<%= scope.lookupvar("bigbluebutton::enable_skin") %>" url="<%= theme_skin %>" />
+    <skinning enabled="<%= scope.lookupvar("bigbluebutton::enable_skin") %>" url="<%= scope.lookupvar("bigbluebutton::theme_skin") %>" />
     <layout showLogButton="false" showVideoLayout="false" showResetLayout="true" showToolbar="true" showHelpButton="true" showLogoutWindow="true"/>
     
   	<modules>

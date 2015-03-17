@@ -1,6 +1,6 @@
 # Puppet bigbluebutton
 
-Install bigbluebutton 0.8 and configure various parameters needed for setting quality etc.
+Install bigbluebutton 0.90 and configure various parameters needed for setting quality etc.
 
 ## Requirements
 

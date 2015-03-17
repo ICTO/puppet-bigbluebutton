@@ -1,7 +1,7 @@
 # This file is managed with puppet
 server {
      listen   80;
-     server_name  <%= fqdn %>;
+     server_name  <%= @fqdn %>;
 
      access_log  /var/log/nginx/bigbluebutton.access.log;
 

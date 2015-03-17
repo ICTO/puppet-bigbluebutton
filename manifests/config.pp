@@ -26,31 +26,27 @@ class bigbluebutton::config {
 
   exec {
     'sethostname':
-      command => "/usr/local/bin/bbb-conf --setip $i{::fqdn}",
-      unless  => '/usr/local/bin/bbb-conf --check';
+      command => "/usr/bin/bbb-conf --setip $i{::fqdn}",
+      unless  => '/usr/bin/bbb-conf --check';
     'setsalt':
-      command => "/usr/local/bin/bbb-conf --salt ${bigbluebutton::params::salt}",
+      command => "/usr/bin/bbb-conf --salt ${bigbluebutton::params::salt}",
       notify  => Exec['restartbbb'],
-      unless  => "/usr/local/bin/bbb-conf --salt | /bin/grep -q ${bigbluebutton::params::salt}";
+      unless  => "/usr/bin/bbb-conf --salt | /bin/grep -q ${bigbluebutton::params::salt}";
+    'enable-webrtc':
+      command     => '/usr/bin/bbb-conf --enablewebrtc',
+      refreshonly => true;
     'cleanbbb':
-      command     => '/usr/local/bin/bbb-conf --clean',
+      command     => '/usr/bin/bbb-conf --clean',
       refreshonly => true;
     'restartbbb':
-      command     => '/usr/local/bin/bbb-conf --restart',
+      command     => '/usr/bin/bbb-conf --restart',
       refreshonly => true;
     'startbbb':
-      command     => '/usr/local/bin/bbb-conf --start',
+      command     => '/usr/bin/bbb-conf --start',
       refreshonly => true;
     'stopbbb':
-      command     => '/usr/local/bin/bbb-conf --stop',
+      command     => '/usr/bin/bbb-conf --stop',
       refreshonly => true;
-  }
-
-  file { '/etc/nginx/sites-available/bigbluebutton':
-    ensure    => file,
-    content => template('bigbluebutton/bigbluebutton-nginx.erb'),
-    notify  => Exec['restartbbb'],
-    require => Package['bigbluebutton'];
   }
 
   file { '/var/www/bigbluebutton/client/conf/config.xml':

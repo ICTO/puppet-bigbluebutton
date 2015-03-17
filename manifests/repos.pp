@@ -1,22 +1,31 @@
 class bigbluebutton::repos {
 
-  apt::ppa {'ubuntu-on-rails':
-    ensure => present,
-    key    => '81C0BE11',
-    ppa    => 'ppa';
+  apt::ppa {'ppa:libreoffice/libreoffice-4-3':
+    ensure => present
   }
 
-  apt::key {'328BD16D':
-    source => 'http://ubuntu.bigbluebutton.org/bigbluebutton.asc';
+  apt::ppa {'ppa:mc3man/trusty-media':
+    ensure => present
   }
 
-  apt::sources_list {'bigbluebutton':
+  apt::key {'bigbluebutton':
+    key => '328BD16D',
+    key_source => 'http://ubuntu.bigbluebutton.org/bigbluebutton.asc';
+  }
+
+  apt::source {'bigbluebutton':
     ensure  => present,
-    content => "deb http://ubuntu.bigbluebutton.org/lucid_dev_08/ bigbluebutton-$::lsbdistcodename main";
+    location => 'http://ubuntu.bigbluebutton.org/trusty-090/',
+    release => "bigbluebutton-$::lsbdistcodename",
+    repos => 'main',
+    include_src => false
   }
 
-  apt::sources_list {'multiverse':
+  apt::source {'multiverse':
     ensure  => present,
-    content => "deb http://us.archive.ubuntu.com/ubuntu $::lsbdistcodename multiverse";
+    location => 'http://us.archive.ubuntu.com/ubuntu',
+    release => "$::lsbdistcodename",
+    repos => 'multiverse'
   }
+
 }

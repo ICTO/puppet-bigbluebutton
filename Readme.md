@@ -4,8 +4,8 @@ Install bigbluebutton 0.8 and configure various parameters needed for setting qu
 
 ## Requirements
 
-### Ubuntu 10.04 Server
-* [Camptocamp apt module]
+### Ubuntu 14.04 Server
+* [Puppetlabs apt module]
 
 ## Usage
 
@@ -17,4 +17,4 @@ include bigbluebutton
 
 See the bigbluebutton::params class for more parameters to use for configuration of the server.
 
-[camptocamp apt module]: https://github.com/camptocamp/puppet-apt
+[puppetlabs apt module]: https://github.com/puppetlabs/puppetlabs-apt

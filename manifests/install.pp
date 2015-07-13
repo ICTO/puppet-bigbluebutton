@@ -1,7 +1,5 @@
 class bigbluebutton::install {
 
-  require bigbluebutton::params
-
   file {'/var/local/preseed':
     ensure => 'directory';
   }
@@ -23,10 +21,10 @@ class bigbluebutton::install {
   }
 
   package { 'bbb-demo':
-    ensure => $bigbluebutton::params::install_bbb_demo
+    ensure => $::bigbluebutton::install_bbb_demo
   }
 
   package { 'bbb-check':
-    ensure => $bigbluebutton::params::install_bbb_check
+    ensure => $::bigbluebutton::install_bbb_check
   }
 }

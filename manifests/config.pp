@@ -5,33 +5,31 @@
 
 class bigbluebutton::config {
 
-  require bigbluebutton::params
-
-  $help_url = $bigbluebutton::params::help_url
-  $enable_skin = $bigbluebutton::params::enable_skin
-  $theme_skin = $bigbluebutton::params::theme_skin
-  $translation_on = $bigbluebutton::params::translation_on
-  $translation_enabled = $bigbluebutton::params::translation_enabled
-  $private_chat = $bigbluebutton::params::private_chat
-  $allow_kick_user = $bigbluebutton::params::allow_kick_user
-  $phone_auto_join = $bigbluebutton::params::phone_auto_join
-  $phone_skip_check = $bigbluebutton::params::phone_skip_check
-  $video_quality = $bigbluebutton::params::video_quality
-  $presenter_share_only = $bigbluebutton::params::presenter_share_only
-  $resolutions = $bigbluebutton::params::resolutions
-  $cam_mode_fps = $bigbluebutton::params::cam_mode_fps
-  $cam_quality_bandwith = $bigbluebutton::params::cam_quality_bandwith
-  $cam_quality_picture = $bigbluebutton::params::cam_quality_picture
-  $enable_h264 = $bigbluebutton::params::enable_h264
+  $help_url = $::bigbluebutton::help_url
+  $enable_skin = $::bigbluebutton::enable_skin
+  $theme_skin = $::bigbluebutton::theme_skin
+  $translation_on = $::bigbluebutton::translation_on
+  $translation_enabled = $::bigbluebutton::translation_enabled
+  $private_chat = $::bigbluebutton::private_chat
+  $allow_kick_user = $::bigbluebutton::allow_kick_user
+  $phone_auto_join = $::bigbluebutton::phone_auto_join
+  $phone_skip_check = $::bigbluebutton::phone_skip_check
+  $video_quality = $::bigbluebutton::video_quality
+  $presenter_share_only = $::bigbluebutton::presenter_share_only
+  $resolutions = $::bigbluebutton::resolutions
+  $cam_mode_fps = $::bigbluebutton::cam_mode_fps
+  $cam_quality_bandwith = $::bigbluebutton::cam_quality_bandwith
+  $cam_quality_picture = $::bigbluebutton::cam_quality_picture
+  $enable_h264 = $::bigbluebutton::enable_h264
 
   exec {
     'sethostname':
-      command => "/usr/bin/bbb-conf --setip $i{::fqdn}",
+      command => "/usr/bin/bbb-conf --setip ${::fqdn}",
       unless  => '/usr/bin/bbb-conf --check';
     'setsalt':
-      command => "/usr/bin/bbb-conf --salt ${bigbluebutton::params::salt}",
+      command => "/usr/bin/bbb-conf --salt ${bigbluebutton::salt}",
       notify  => Exec['restartbbb'],
-      unless  => "/usr/bin/bbb-conf --salt | /bin/grep -q ${bigbluebutton::params::salt}";
+      unless  => "/usr/bin/bbb-conf --salt | /bin/grep -q ${bigbluebutton::salt}";
     'enable-webrtc':
       command     => '/usr/bin/bbb-conf --enablewebrtc',
       refreshonly => true;

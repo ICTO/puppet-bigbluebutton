@@ -46,23 +46,25 @@
 # $enable_h264::          Enable h264 encoding, still in beta and does not work with default bigbluebutton installs
 #
 
-class bigbluebutton::params (
-  $salt                 = '1b8ede0fg3d3c73re97b8c69qed478e4',
-  $help_url             = "http://${::fqdn}/help",
-  $enable_skin          = false,
-  $theme_skin           = 'branding/css/theme.css.swf',
-  $translation_on       = false,
-  $translation_enabled  = false,
-  $private_chat         = true,
-  $allow_kick_user      = true,
-  $phone_auto_join      = true,
-  $phone_skip_check     = false,
-  $video_quality        = '100',
-  $presenter_share_only = false,
-  $resolutions          = '320x240,640x480,1280x720',
-  $cam_mode_fps         = '10',
-  $cam_quality_bandwith = '0',
-  $cam_quality_picture  = '90',
-  $enable_h264          = false
-) {
+class bigbluebutton::params {
+    $salt                 = '1b8ede0fg3d3c73re97b8c69qed478e4'
+    $help_url             = "http://${::fqdn}/help.html"
+    $enable_skin          = 'false'
+    $theme_skin           = 'branding/css/theme.css.swf'
+    $translation_on       = 'false'
+    $translation_enabled  = 'false'
+    $private_chat         = 'true'
+    $allow_kick_user      = 'true'
+    $phone_auto_join      = 'true'
+    $phone_skip_check     = 'false'
+    $video_quality        = '100'
+    $presenter_share_only = 'false'
+    $resolutions          = '320x240,640x480,1280x720'
+    $cam_mode_fps         = '10'
+    $cam_quality_bandwith = '0'
+    $cam_quality_picture  = '90'
+    $enable_h264          = 'false'
+    $install_bbb_demo     = installed
+    $install_bbb_check    = installed
+    $manage_repos         = true
 }

@@ -10,8 +10,9 @@ class bigbluebutton::repos {
         }
 
         apt::key {'bigbluebutton':
-            key => '328BD16D',
-            key_source => 'http://ubuntu.bigbluebutton.org/bigbluebutton.asc';
+            id => '328BD16D',
+            source => 'http://ubuntu.bigbluebutton.org/bigbluebutton.asc',
+            notify => exec['apt_update']
         }
 
         apt::source {'bigbluebutton':
@@ -19,7 +20,9 @@ class bigbluebutton::repos {
             location => 'http://ubuntu.bigbluebutton.org/trusty-090/',
             release => "bigbluebutton-$::lsbdistcodename",
             repos => 'main',
-            include_src => false
+            include => {
+                'src' => false
+            }
         }
 
         apt::source {'multiverse':

@@ -25,7 +25,7 @@ class bigbluebutton::config {
   exec {
     'sethostname':
       command => "/usr/bin/bbb-conf --setip ${::fqdn}",
-      unless  => '/usr/bin/bbb-conf --check | /bin/grep -q ${::fqdn}';
+      unless  => "/usr/bin/bbb-conf --check | /bin/grep -q ${::fqdn}";
     'setsalt':
       command => "/usr/bin/bbb-conf --salt ${bigbluebutton::salt}",
       notify  => Exec['restartbbb'],

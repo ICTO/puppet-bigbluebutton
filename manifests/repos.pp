@@ -1,7 +1,7 @@
 class bigbluebutton::repos {
 
     if $::bigbluebutton::manage_repos {
-        apt::ppa {'ppa:libreoffice/libreoffice-4-3':
+        apt::ppa {'ppa:libreoffice/libreoffice-4-4':
             ensure => present
         }
 
